@@ -12,6 +12,7 @@ def all_countries_view(request):
 	context = {}
 	return render(request, 'all_countries.html', context)
 
+#creeaza imaginea piechart in urma selectiei tarilor si o salveaza cu ajutorul buffer
 def create_image(countries =["China", "India", "Brazilia"], population = [1411, 1378, 213]):
 #def create_image():
     #countries =["China", "India", "Brazilia"]
@@ -37,6 +38,7 @@ def choose_countries_view(request):
     
     result_image = '10tari.png'
     base64_image = None
+    tari = None
     
     if request.method == "POST":
         print("parametri:", request.POST.keys())
@@ -50,6 +52,7 @@ def choose_countries_view(request):
     context = {
 		"countries": countries,
         "result_image": result_image,
-        "base64_image": base64_image
+        "base64_image": base64_image,
+        "tari": tari #s-a pus mai sus tari = None in cazul in care nu am tari selectate
 	}
     return render(request, 'choose_countries.html', context)
